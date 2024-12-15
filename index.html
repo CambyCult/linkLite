@@ -199,20 +199,22 @@
         }
 
         async function checkHttpStatus(url, statusSpan) {
-            try {
-                const response = await fetch(url, { method: 'HEAD' });
-                if (response.ok) {
-                    statusSpan.textContent = `HTTP Status: ${response.status}`;
-                    statusSpan.className = 'status-success';
-                } else {
-                    statusSpan.textContent = `HTTP Status: ${response.status}`;
-                    statusSpan.className = 'status-error';
-                }
-            } catch (error) {
-                statusSpan.textContent = 'HTTP Status: Error';
-                statusSpan.className = 'status-error';
-            }
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        if (response.ok) {
+            statusSpan.textContent = `HTTP Status: ${response.status}`;
+            statusSpan.className = 'status-success';
+        } else {
+            statusSpan.textContent = `HTTP Status: ${response.status}`;
+            statusSpan.className = 'status-error';
         }
+    } catch (error) {
+        statusSpan.textContent = 'HTTP Status: CORS Restricted';
+        statusSpan.className = 'status-error';
+    }
+}
+
+
     </script>
 </body>
 </html>
